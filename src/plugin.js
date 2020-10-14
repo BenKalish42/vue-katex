@@ -2,13 +2,14 @@ import katexDirective from './directives/katex-directive';
 import KatexElement from './components/KatexElement.vue';
 
 const plugin = {
-  install(Vue, options) {
+  install(app, options) {
     const globalOptions = (options && options.globalOptions) || {};
     const vKatex = katexDirective(globalOptions);
-    Vue.directive(vKatex.name, vKatex.directive);
-    Vue.component(KatexElement.name, KatexElement);
-
-    Vue.prototype.$katexOptions = globalOptions;
+    app.directive(vKatex.name, vKatex.directive);
+    app.component(KatexElement.name, KatexElement);
+    // TEST PLEASE REMOVE
+    console.log(app);
+    app.config.globalProperties.$katexOptions = globalOptions;
   },
 };
 
